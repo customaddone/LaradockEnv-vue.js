@@ -7,17 +7,18 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <!-- Vueによってレンダリングされる部分です
-         script以下のコードがdivの中に反映されます -->
-    <div id="app"></div>
-    <!--  script以下はVueを実行するためのコードです
-          bladeの{{$変数}}記法とコンフリクトするので、{{}}で囲うvueの式を描く場合は
-　　　　　 {{}}の前に＠をつけましょう -->
+    <div id="app">
+        <p>
+            @{{ message }}
+        </p>
+    </div>
     <script>
+        //ロードされ、Vueがグローバル変数として定義されているか確認
+        console.assert(typeof Vue !== 'undefined');
         new Vue({
-            template: '<p>@{{msg}}</p>',
-            data: { msg: 'hello world!' }
-        }).$mount('#app')
+            el: '#app',
+            data: { message: 'こんにちは！' }
+        });
     </script>
     <div class="container">
         <header>
