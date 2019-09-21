@@ -1,23 +1,23 @@
 Laradockの環境構築、vue.jsの勉強の備忘録として立ち上げたリポジトリです。
 
-Laradockの環境構築の手順
+Laradockの環境構築の手順<br>
 
 １　Laradockのインストール<br>
 ２　.envファイルの作成、編集<br>
 ３　コンテナの起動<br>
-４  Laravelプロジェクトの作成<br>
-５  mysqlに接続<br>
+４　Laravelプロジェクトの作成<br>
+５　mysqlに接続<br>
 
-１　Laradockのインストール
-　　今回のディレクトリの構造は以下のようになっています
-　　(root) -- sampleapp -- laradock(laradock本体)
-                        -- dockapp(laravelプロジェクト)
+１　Laradockのインストール<br>
+　　今回のディレクトリの構造は以下のようになっています<br>
+　　(root) -- sampleapp -- laradock(laradock本体)<br>
+                        -- dockapp(laravelプロジェクト)<br>
 
- (1)　あらかじめmkdir sampleappで開発環境を整えるためのディレクトリを作成しておく       
- (2)　cd sampleappでカレントディレクトリを変更
- (3) 下記コマンドでLaradockをsampleappディレクトリ内にCloneします
-     $ git clone https://github.com/LaraDock/laradock.git
- (4)  cd laradockでクローンしたLaradockに移動
+ (1)　あらかじめmkdir sampleappで開発環境を整えるためのディレクトリを作成しておく<br>
+ (2)　cd sampleappでカレントディレクトリを変更<br>
+ (3)　下記コマンドでLaradockをsampleappディレクトリ内にCloneします<br>
+      $ git clone https://github.com/LaraDock/laradock.git<br>
+ (4)  cd laradockでクローンしたLaradockに移動<br>
 
 ２　.envファイルの作成、編集
  (1)　$ cp env-example .envで .envファイルを作成
