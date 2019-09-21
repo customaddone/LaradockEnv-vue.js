@@ -11,7 +11,7 @@ Laradockの環境構築の手順<br>
 １　Laradockのインストール<br>
 　　今回のディレクトリの構造は以下のようになっています<br>
 　　(root) -- sampleapp -- laradock(laradock本体)<br>
-                        -- dockapp(laravelプロジェクト)<br>
+　　　　　　　　　　　　　　 -- dockapp(laravelプロジェクト)<br>
 
  (1)　あらかじめmkdir sampleappで開発環境を整えるためのディレクトリを作成しておく<br>
  (2)　cd sampleappでカレントディレクトリを変更<br>
