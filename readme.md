@@ -1,58 +1,76 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+Laradockの環境構築、vue.jsの勉強の備忘録として立ち上げたリポジトリです。
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Laradockの環境構築の手順
 
-## About Laravel
+１　Laradockのインストール
+２　.envファイルの作成、編集
+３　コンテナの起動
+４  Laravelプロジェクトの作成
+５  mysqlに接続
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+１　Laradockのインストール
+　　今回のディレクトリの構造は以下のようになっています
+　　(root) -- sampleapp -- laradock(laradock本体)
+                        -- dockapp(laravelプロジェクト)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+ (1)　あらかじめmkdir sampleappで開発環境を整えるためのディレクトリを作成しておく       
+ (2)　cd sampleappでカレントディレクトリを変更
+ (3) 下記コマンドでLaradockをsampleappディレクトリ内にCloneします
+     $ git clone https://github.com/LaraDock/laradock.git
+ (4)  cd laradockでクローンしたLaradockに移動
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+２　.envファイルの作成、編集
+ (1)　$ cp env-example .envで .envファイルを作成
+ (2)　.envファイルを編集します
+ 　　①　今回の環境構築はMySQL 5.7で行っています。MySQL8.0にしなかったのはMySQL8.0からセキュリ　　　ティが強化され、MySQLでコンテナを立ち上げてマイグレーションするとエラー（The server 　　　　　requested authentication method unknown to the client）が発生するからです。
+ 　　　　なので、この段階で、.envのMySQLのバージョンのところを
 
-## Learning Laravel
+ 　　　MYSQL_VERSION=5.7 // latest → 5.7
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+　　　 にしました。
+　　②　今回、nginxのポート番号を80 → 8888 に変更しました。
+　　　 (macのApacheが利用するポートとダブらないように)
+　　　　NGINX_HOST_HTTP_PORT=8888 // 80 → 8888
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+３　コンテナの起動
+ 　 laradock内で実行
+ 　　$ docker-compose up -d nginx mysql phpmyadmin
+    →　mysqlだけ起動されない?
+     MySQLを5.7にした場合、DATA_PATH_HOSTで設定したフォルダを綺麗にして、イメージを作成し直す必要があるらしいです。
+   ①　パス確認
+      $ cat .env | grep DATA_PATH_HOST
+     自分の場合は　DATA_PATH_HOST=~/.laradock/data　が表示されました。
+   ②　パス、イメージ、コンテナを消去
+      rm -rf ~/.laradock/data/mysql
+     docker rmi laradock_mysql -f
+     docker rmi mysql -f
+   ③　mysqlをビルドし直し
+   　  docker-compose build --no-cache mysql
+   ④  docker ps でちゃんと動いているか確認しましょう。
 
-## Laravel Sponsors
+４　Laravelプロジェクトの作成
+ (1) workspaceに入る
+     $ docker exec -it laradock_workspace_1 bash
+ (2) Laravelプロジェクトの作成
+     # composer create-project laravel/laravel dockapp(任意のアプリ名)
+ (3) コンテナから出る
+ 　　 # exit
+ (4) 設定変更をするため一時停止
+     $ docker-compose stop
+ (5) 設定変更
+ 　　 laradockの.envの
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+ 　　　APP_CODE_PATH_HOST=../　を
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+ 　　　APP_CODE_PATH_HOST=../dockapp(自分の作ったディレクトリに対するLaradock起点での
+    任意のパスを書き込んでください）
 
-## Contributing
+      に変更します。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  ブラウザでhttp://localhost:8888/につなぐと例の画面が出てくるとはずです
+  （出てこない場合は多分APP_CODE_PATH_HOSTのパス間違い）
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+     　
+ 　　
+ 　　　　
+ 　　　
