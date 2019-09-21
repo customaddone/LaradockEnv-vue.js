@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// ユーザー一覧、登録
+Route::resource('users', 'UsersController');
