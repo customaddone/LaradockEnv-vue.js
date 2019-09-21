@@ -5,6 +5,9 @@
 </head>
 <!-- テンプレート用 -->
 <body>
+  <!-- ４　npm run devでソースをコンパイルする
+       ５  view内でasset('/js/()')でassetを読み込む -->
+  <script src="{{ asset('/js/samplevue.js') }}"></script>
   <div class="container">
     <header>
       @yield('header')

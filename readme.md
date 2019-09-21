@@ -1,6 +1,12 @@
 Laradockの環境構築、vue.jsの勉強の備忘録として立ち上げたリポジトリです。
 
-~~Laradockの環境構築の手順~~<br>
+Laradockの環境構築の手順<br>
+
+　※環境構築していく中で<br>
+　①　MySQL8.0で構築していくとエラーが出る<br>
+　②　MySQLに繋がらない<br>
+　といったことがあり、自分なりに悪戦苦闘したものを記録を残しました<br>
+　微笑ましい目で見ていただければ幸いです<br>
 
 １　Laradockのインストール<br>
 ２　.envファイルの作成、編集<br>
@@ -23,7 +29,7 @@ Laradockの環境構築、vue.jsの勉強の備忘録として立ち上げたリ
 　(1)　$ cp env-example .envで .envファイルを作成<br>
 　(2)　.envファイルを編集します<br>
  　　①　今回の環境構築はMySQL 5.7で行っています。MySQL8.0にしなかったのはMySQL8.0からセキュ<br>
-　　　リティが強化され、MySQLでコンテナを立ち上げてマイグレーションするとエラー（The server <br>　
+　　　リティが強化されたため、MySQLでコンテナを立ち上げてマイグレーションするとエラー（The server<br>　
 　　　requested authentication method unknown to the client）が発生するからです。<br>
 　　　　なので、この段階で、.envのMySQLのバージョンのところを<br>
 
