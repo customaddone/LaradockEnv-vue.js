@@ -1,6 +1,6 @@
 Laradockの環境構築、vue.jsの勉強の備忘録として立ち上げたリポジトリです。
 
-Laradockの環境構築の手順<br>
+~~Laradockの環境構築の手順~~<br>
 
 １　Laradockのインストール<br>
 ２　.envファイルの作成、編集<br>
@@ -11,7 +11,7 @@ Laradockの環境構築の手順<br>
 １　Laradockのインストール<br>
 　　今回のディレクトリの構造は以下のようになっています<br>
 　　(root) -- sampleapp -- laradock(laradock本体)<br>
-　　　　　　　　　　　　　-- dockapp(laravelプロジェクト)<br>
+　　　　　　　　　　　　　　-- dockapp(laravelプロジェクト)<br>
 
 　(1)　あらかじめmkdir sampleappで開発環境を整えるためのディレクトリを作成しておく<br>
 　(2)　cd sampleappでカレントディレクトリを変更<br>
@@ -57,7 +57,7 @@ Laradockの環境構築の手順<br>
 　(2)　Laravelプロジェクトの作成<br>
 　　　# composer create-project laravel/laravel dockapp(任意のアプリ名)<br>
 　(3)　コンテナから出る<br>
- 　　# exit<br>
+ 　　　# exit<br>
 　(4)　設定変更をするため一時停止<br>
 　　　$ docker-compose stop<br>
 　(5)　設定変更<br>
@@ -87,7 +87,7 @@ Laradockの環境構築の手順<br>
 　(4)　ユーザー作成、権限付与<br>
  　　　→ create user 'root（任意の名前）'@'172.20.0.4（workspaceのIPアドレス）'<br>
 　　　identified by 'secret（任意のパスワード）';<br>
-　　　→ grant all privileges on *.* to 'root'@'172.20.0.4'<br>
+　　　→ grant all privileges on *.* to 'root'@'172.20.0.4';<br>
 　(5)　mysqlを出る<br>
 　　　→ exit<br>
 　　　# exit<br>
@@ -101,7 +101,7 @@ Laradockの環境構築の手順<br>
 　　　　MYSQL_ROOT_PASSWORD=root<br>
 　　　　MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d<br>
 
-　　　②　Laravelの方
+　　　②　Laravelの方<br>
 　　　　DB_CONNECTION=mysql<br>
 　　　　DB_HOST=mysql // 127.0.0.1 → mysql<br>
 　　　　DB_PORT=3306<br>
