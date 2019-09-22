@@ -9,8 +9,10 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <div id="fruits-list">
-        <simple-counter></simple-counter>
+    <div id="app">
+        <!-- propsにキャメルケースでitemNameと書いた場合、テンプレート側の属性名にはケバブ
+    　　　　　ケースのitem-nameを書きます -->
+        <item-desc v-bind:item-name='myItem'></item-desc>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 

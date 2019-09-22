@@ -19,13 +19,17 @@
      }
    ]
 
-Vue.component('simple-counter', {
-  template: '<h1>フルーツ一覧 @{{ fruits[0] }}</h1>',
-  data: function () {
-    return {
-      fruits: ['りんご', 'みかん']
+// 親(Vue)のmyItemの値を子(item-desc)のitemNameに渡しています
+Vue.component('item-desc', {
+  props: {
+    itemName: {
+      type: String
     }
-  }
+  },
+  template: '<p>{{ itemName }}は便利です。</p>'
 })
 
-new Vue({ el: 'simple-counter' })
+new Vue({
+   el: '#app',
+   data: { myItem: 'pen'}
+ })
