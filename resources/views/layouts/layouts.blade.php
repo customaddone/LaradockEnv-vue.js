@@ -4,22 +4,19 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Vueのインストールを行う -->
     <script src="https://unpkg.com/vue@2.5.17"></script>
+    <!-- csrf_tokenをつける -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <!-- テンプレート用 -->
 <body>
+    <!-- コンポーネントの配置 -->
     <div id="app">
-        <p>
-            @{{ message }}
-        </p>
+        <!-- この中にresources/assets/js/components/SampleComponent.vueで書いた
+            　テンプレートが入る -->
+        <sample-component></sample-component>
     </div>
-    <script>
-        //ロードされ、Vueがグローバル変数として定義されているか確認
-        console.assert(typeof Vue !== 'undefined');
-        new Vue({
-            el: '#app',
-            data: { message: 'こんにちは！' }
-        });
-    </script>
+    <!-- -->
+    <script src="{{ mix('js/app.js') }}"></script>
     <div class="container">
         <header>
             @yield('header')

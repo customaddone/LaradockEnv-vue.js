@@ -17,6 +17,18 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+/* １つ目の引数　ビューでVueが適用される要素を決める
+　　２つ目の引数　Vueのコードの中身が書かれてあるファイルを引っ張ってくる
+    npm run devすればコンパイルされるが、npm run watchするとassetファイルを変更すると自動で
+    コンパイルしてくれる
+
+    git addをするとwarning: CRLF will be replaced by LF inのエラーが出て、gitが改行
+    コードをCRLFに変更しようとする
+
+    →　$git config --global core.autoCRLF false
+    を実行すると、gitが改行コードをCRLFへ変更しなくなる */
+Vue.component('sample-component', require('./components/SampleComponent.vue'));
+// id="app"の要素にVueが反映される
 const app = new Vue({
     el: '#app'
 });
