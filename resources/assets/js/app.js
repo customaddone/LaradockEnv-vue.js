@@ -24,7 +24,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
     git addをするとwarning: CRLF will be replaced by LF inのエラーが出て、gitが改行
     コードをCRLFに変更しようとする
-
     →　$git config --global core.autoCRLF false
     を実行すると、gitが改行コードをCRLFへ変更しなくなる */
 Vue.component('sample-component', require('./components/SampleComponent.vue'));

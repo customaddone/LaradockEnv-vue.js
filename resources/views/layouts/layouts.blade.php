@@ -9,14 +9,13 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <!-- コンポーネントの配置 -->
+    <!-- コンポーネントの配置
+         javascript用のファイルにVueのコードをおけば動く -->
     <div id="app">
-        <!-- この中にresources/assets/js/components/SampleComponent.vueで書いた
-            　テンプレートが入る -->
-        <sample-component></sample-component>
+        <p>@{{ items[0].name }}</p>
     </div>
-    <!-- -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset('/js/samplevue.js') }}"></script>
+
     <div class="container">
         <header>
             @yield('header')

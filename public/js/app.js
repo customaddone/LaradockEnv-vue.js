@@ -1101,7 +1101,12 @@ Vue.component('example-component', __webpack_require__(40));
 /* １つ目の引数　ビューでVueが適用される要素を決める
 　　２つ目の引数　Vueのコードの中身が書かれてあるファイルを引っ張ってくる
     npm run devすればコンパイルされるが、npm run watchするとassetファイルを変更すると自動で
-    コンパイルしてくれる */
+    コンパイルしてくれる
+
+    git addをするとwarning: CRLF will be replaced by LF inのエラーが出て、gitが改行
+    コードをCRLFに変更しようとする
+    →　$git config --global core.autoCRLF false
+    を実行すると、gitが改行コードをCRLFへ変更しなくなる */
 Vue.component('sample-component', __webpack_require__(43));
 // id="app"の要素にVueが反映される
 var app = new Vue({
