@@ -19,56 +19,13 @@
      }
    ]
 
-   var vm = new Vue({
-     el: '#app',
-     data: {
-       items: items
-     },
-     methods: {
-       doBuy: function () {
-         alert(this.totalPriceWithTax + '円のお買い上げ!')
-         // forEachでitemsの内容を繰り返し処理する
-         this.items.forEach(function (item) {
-           item.quantity = 0
-         })
-       }
-     },
-     // 算出プロパティ　ややこしい計算処理はhtmlよりこっちに書きましょう
-     computed: {
-       totalPrice: function () {
-         /* reduceは配列の要素に対して処理を行うメソッド
-            第一引数は１つ前の処理の結果
-            第二引数は現在処理されている要素の値
-            （第三引数は現在処理されている要素のインデックス）
-            最後の０は初期値　*/
-         return this.items.reduce(function (sum, item) {
-           return sum + (item.price * item.quantity)
-         }, 0)
-       },
-       totalPriceWithTax: function () {
-         return Math.floor(this.totalPrice * 1.08)
-       },
-       // 戻り値はtrue or falseになる
-       canBuy: function () {
-         return this.totalPrice >= 1000
-       },
-       // 合計金額が1000円以下になるとdivの枠線が赤くなります
-       errorMessageStyle: function () {
-         return {
-           border: this.canBuy ? '' : '1px solid red',
-           color: this.canBuy ? '' : 'red',
-         }
-       },
-     },
-     filters: {
-       numberWithDelimiter: function (value) {
-         if (!value) {
-           return '0'
-         }
-         // ３桁ごとにカンマを打つ関数
-         return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
-       }
-     }
-   })
+Vue.component('simple-counter', {
+  template: '<h1>フルーツ一覧 {{ fruits[0] }}</h1>',
+  data: function () {
+    return {
+      fruits: ['りんご', 'みかん']
+    }
+  }
+})
 
-   window.vm = vm
+new Vue({ el: 'simple-counter' })
