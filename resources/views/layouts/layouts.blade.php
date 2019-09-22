@@ -14,10 +14,9 @@
             <li v-for="item in items" v-bind:key="item.name">
                 <!-- inputイベントをハンドリングして入力の度にquantityプロパティを変更
                      v-onでイベントが発生した時に属性値で指定した式を評価する
-                     $eventを使って直接item.quantityの値を変更している -->
-                @{{ item.name }}の個数： <input type="number" v-on:input="item.
-                quantity = $event.target.value" v-bind:value="item.quantity"
-                min="0">
+                     v-model:value=でv-onの代わりにできる -->
+                @{{ item.name }}の個数： <input type="number" v-model:value=
+                "item.quantity" min="0">
             </li>
         </ul>
         <hr>
