@@ -22,7 +22,16 @@
    var vm = new Vue({
      el: '#app',
      data: {
-       loggedInButton: 'ログイン済みのため購入できます。'
+       items: items
+     },
+     filters: {
+       numberWithDelimiter: function (value) {
+         if (!value) {
+           return '0'
+         }
+         // ３桁ごとにカンマを打つ関数
+         return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+       }
      }
    })
 

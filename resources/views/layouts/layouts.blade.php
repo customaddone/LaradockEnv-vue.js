@@ -9,8 +9,11 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <!-- v-bindで属性値に対してVueを展開する -->
-    <input type="text" id="app" v-bind:value="loggedInButton">
+    <div id="app">
+        <p>@{{ items[0].name }}: @{{ items[0].price }} * @{{ items[0].quantity }}</p>
+        <!-- 1000に対してnumberWithDelimiterを適用 -->
+        <p>フィルタ処理例 @{{ 1000 | numberWithDelimiter }}</p>
+    </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
     <div class="container">
