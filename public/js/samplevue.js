@@ -15,7 +15,7 @@
      {
        name: '消しゴム',
        price: 500,
-       quantity: 0
+       quantity: 1
      }
    ]
 
@@ -43,7 +43,8 @@
        canBuy: function () {
          return this.totalPrice >= 1000
        },
-       errorMessageClass: function () {
+       // 合計金額が1000円以下になるとdivの枠線が赤くなります
+       errorMessageStyle: function () {
          return {
            border: this.canBuy ? '' : '1px solid red',
            color: this.canBuy ? '' : 'red',

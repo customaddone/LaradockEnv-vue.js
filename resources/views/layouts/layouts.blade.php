@@ -10,22 +10,31 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <div v-bind:style="errorMessageClass">
+        <ul>
+            <li v-for="item in items" v-bind:key="item.name">
+                <!-- inputイベントをハンドリングして入力の度にquantityプロパティを変更
+                     v-onでイベントが発生した時に属性値で指定した式を評価する
+                     $eventを使って直接item.quantityの値を変更している -->
+                @{{ item.name }}の個数： <input type="number" v-on:input="item.
+                quantity = $event.target.value" v-bind:value="item.quantity"
+                min="0">
+            </li>
+        </ul>
+        <hr>
+        <div v-bind:style="errorMessageStyle">
             <ul>
-                <!-- liの中で、Vueから渡されたインスタンスitemsの繰り返しレンダリングを
-            　　　　　行います-->
                 <li v-for="item in items" v-bind:key="item.name">
-                    @{{ item.name }}: @{{ item.price }} * @{{ item.quantity }} = @{{
-                    item.price * item.quantity | numberWithDelimiter }}円
+                    @{{ item.name }}: @{{ item.price }} * @{{ item.quantity }} =
+                    @{{ item.price * item.quantity | numberWithDelimiter }}円
                 </li>
-            </ul>
+            <ul>
             <p>@{{ items[0].name }}: @{{ items[0].price }} * @{{ items[0].quantity}}
-            </p>
-            <p>小計： @{{ totalPrice | numberWithDelimiter }}円</p>
-            <p>合計（税込）： @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
+    	    </p>
+    	    <p>小計： @{{ totalPrice | numberWithDelimiter }}円</p>
+    	    <p>合計（税込）： @{{ totalPriceWithTax | numberWithDelimiter }}円</p>
             <p v-show="!canBuy">
-                @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
-            </p>
+    	        @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
+    	    </p>
         </div>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
