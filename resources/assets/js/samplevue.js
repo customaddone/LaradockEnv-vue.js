@@ -38,6 +38,10 @@
        },
        totalPriceWithTax: function () {
          return Math.floor(this.totalPrice * 1.08)
+       },
+       // 戻り値はtrue or falseになる
+       canBuy: function () {
+         return this.totalPrice >= 1000
        }
      },
      filters: {

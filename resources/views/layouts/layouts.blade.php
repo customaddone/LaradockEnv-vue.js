@@ -10,7 +10,12 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <p>合計： @{{ totalPrice }}</p>
+        <p>@{{ items[0].name }}: @{{ items[0].price }} * @{{ items[0].quantity }}</p>
+        <p>小計：@{{ totalPrice | numberWithDelimiter }}円</p>
+        <p>合計（税込）：@{{ totalPriceWithTax | numberWithDelimiter}}円</p>
+        <p v-show="!canBuy">
+            @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
+        </p>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
