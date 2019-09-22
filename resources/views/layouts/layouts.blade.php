@@ -10,9 +10,7 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <p>@{{ items[0].name }}: @{{ items[0].price }} * @{{ items[0].quantity }}</p>
-        <!-- 1000に対してnumberWithDelimiterを適用 -->
-        <p>フィルタ処理例 @{{ 1000 | numberWithDelimiter }}</p>
+        <p>合計： @{{ totalPrice }}</p>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
