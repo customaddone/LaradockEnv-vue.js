@@ -42,7 +42,14 @@
        // 戻り値はtrue or falseになる
        canBuy: function () {
          return this.totalPrice >= 1000
-       }
+       },
+       // 合計金額が1000円以下になるとdivの枠線が赤くなります
+       errorMessageClass: function () {
+         return {
+           border: this.canBuy ? '' : '1px solid red',
+           color: this.canBuy ? '' : 'red',
+         }
+       },
      },
      filters: {
        numberWithDelimiter: function (value) {
