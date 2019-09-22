@@ -9,13 +9,16 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <div id="fruits-counter">
-        <div v-for="fruit in fruits">
-            <!-- カスタムイベントをv-onで捕捉 -->
-            @{{ fruit.name }}: <counter-button v-on:increment="incrementCartStatus()">
-            </counter-button>
-        </div>
-        <p>合計: @{{ total }}</p>
+    <div id="fruits-list">
+        <page-header>
+            <!-- slotのname属性を指定することで、子コンポーネントのコンテンツをカスタマイズ
+        　　　　　します -->
+            <h1 slot="header">夏の果物</h1>
+        </page-header>
+        <ul>
+            <li>スイカ</li>
+            <li>マンゴー</li>
+        <ul>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
