@@ -9,11 +9,8 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <!-- コンポーネントの配置
-         javascript用のファイルにVueのコードをおけば動く -->
-    <div id="app">
-        <p>@{{ items[0].name }}</p>
-    </div>
+    <!-- v-bindで属性値に対してVueを展開する -->
+    <input type="text" id="app" v-bind:value="loggedInButton">
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
     <div class="container">
