@@ -19,26 +19,39 @@
      }
    ]
 
-// 子コンポーネント
-Vue.component('fruits-item-name', {
-  /* propで値を受ける器を作っている
-     ビューで値を受け取りテンプレートに値を渡す */
-  props: {
-    fruitsItem: { // テンプレート中ではケバブケース
-      type: Object, // 要オブジェクト
-      required: true // このコンポーネントに必須
+// 子コンポーネントのカウンターボタン
+var counterButton = Vue.extend({
+  // ボタンを押すとaddToCartが呼ばれる
+  template: '<span>{{ counter }}個<button v-on:click="addToCart">追加</button></span>',
+  data: function () {
+    return {
+      counter: 0
     }
   },
-  template: '<li>{{ fruitsItem.name }}</li>'
+  methods: {
+    addToCart: function () {
+      this.counter += 1
+      this.$emit('increment') // ビューで親のincrementCartStatusを呼んでいます
+    }
+  },
 })
 
-// 親コンポーネント
+// 親コンポーネントのカート
 new Vue({
-   el: '#fruits-component',
-   data: {
-     fruitsItems: [
-       { name: '梨' },
-       { name: 'いちご' },
-     ]
-   }
- })
+  el: '#fruits-counter',
+  components: {
+    'counter-button': counterButton
+  },
+  data: {
+    total: 0,
+    fruits: [
+      { name: '梨' },
+      { name: 'いちご' }
+    ]
+  },
+  methods: {
+    incrementCartStatus: function () { // ボタンを押す度にtotalが１個ずつ増える
+      this.total += 1
+    }
+  }
+})

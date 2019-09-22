@@ -9,13 +9,13 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <div id="fruits-component">
-        <!-- v-forでfruitsItemsを回して:fruits-item="fruit"で親コンポーネントから
-    　　　　　子コンポーネントに値を渡している -->
-        <ol>
-            <fruits-item-name v-for="fruit in fruitsItems" :key="fruit.name"
-            :fruits-item="fruit"></fruits-item-name>
-        </ol>
+    <div id="fruits-counter">
+        <div v-for="fruit in fruits">
+            <!-- カスタムイベントをv-onで捕捉 -->
+            @{{ fruit.name }}: <counter-button v-on:increment="incrementCartStatus()">
+            </counter-button>
+        </div>
+        <p>合計: @{{ total }}</p>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
