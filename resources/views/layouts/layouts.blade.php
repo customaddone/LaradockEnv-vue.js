@@ -34,6 +34,8 @@
             <p v-show="!canBuy">
     	        @{{ 1000 | numberWithDelimiter }}円以上からご購入いただけます
     	    </p>
+            <!-- ボタンが押されたら、doBuyメソッドを呼びます -->
+            <button v-bind:disabled="!canBuy" v-on:click='doBuy'>購入</button>
         </div>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>

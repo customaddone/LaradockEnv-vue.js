@@ -24,6 +24,15 @@
      data: {
        items: items
      },
+     methods: {
+       doBuy: function () {
+         alert(this.totalPriceWithTax + '円のお買い上げ!')
+         // forEachでitemsの内容を繰り返し処理する
+         this.items.forEach(function (item) {
+           item.quantity = 0
+         })
+       }
+     },
      // 算出プロパティ　ややこしい計算処理はhtmlよりこっちに書きましょう
      computed: {
        totalPrice: function () {
