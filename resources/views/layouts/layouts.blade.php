@@ -9,10 +9,13 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <div id="app">
-        <!-- propsにキャメルケースでitemNameと書いた場合、テンプレート側の属性名にはケバブ
-    　　　　　ケースのitem-nameを書きます -->
-        <item-desc v-bind:item-name='myItem'></item-desc>
+    <div id="fruits-component">
+        <!-- v-forでfruitsItemsを回して:fruits-item="fruit"で親コンポーネントから
+    　　　　　子コンポーネントに値を渡している -->
+        <ol>
+            <fruits-item-name v-for="fruit in fruitsItems" :key="fruit.name"
+            :fruits-item="fruit"></fruits-item-name>
+        </ol>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 

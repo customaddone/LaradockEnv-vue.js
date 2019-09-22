@@ -19,17 +19,26 @@
      }
    ]
 
-// 親(Vue)のmyItemの値を子(item-desc)のitemNameに渡しています
-Vue.component('item-desc', {
+// 子コンポーネント
+Vue.component('fruits-item-name', {
+  /* propで値を受ける器を作っている
+     ビューで値を受け取りテンプレートに値を渡す */
   props: {
-    itemName: {
-      type: String
+    fruitsItem: { // テンプレート中ではケバブケース
+      type: Object, // 要オブジェクト
+      required: true // このコンポーネントに必須
     }
   },
-  template: '<p>{{ itemName }}は便利です。</p>'
+  template: '<li>{{ fruitsItem.name }}</li>'
 })
 
+// 親コンポーネント
 new Vue({
-   el: '#app',
-   data: { myItem: 'pen'}
+   el: '#fruits-component',
+   data: {
+     fruitsItems: [
+       { name: '梨' },
+       { name: 'いちご' },
+     ]
+   }
  })
