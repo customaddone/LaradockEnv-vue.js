@@ -10,8 +10,14 @@ var PullDownMenu = {
       ]
     }
   },
-  // mouseleaveはマウスが離れた時に発火
-  // v-showは非表示の状態になる v-ifは存在自体が削除される
+  /*
+   * transitionの中でv-on(@)を付けて発火するイベントを指定
+   * mouseleaveはマウスが離れた時に発火 mouseoverはマウスを乗せた時に発火
+   * v-showは非表示の状態になる v-ifは存在自体が削除される
+   * 要素が挿入される前にbeforeEnter発火
+   * アニメーションされる前にenter発火
+   * 離れる時にleave発火
+  */
   template: `
     <div @mouseleave="isShown = false">
       <p @mouseover="isShown = true"><a href="#" class="menu">{{ name }}</a></p>
@@ -31,14 +37,17 @@ var PullDownMenu = {
   `,
   methods: {
     beforeEnter: function (el) {
-      // el: トランジジョンの対象となるDOM要素
-      // アニメーションの初期状態
+      /*
+       * el: トランジジョンの対象となるDOM要素(メニューの下から伸びてくるやつ)
+       * el : #appの形だけではなくインスタンスとしても扱える
+       * アニメーションの初期状態
+       */
       el.style.height = '0px'
       el.style.opacity = '0'
     },
     enter: function (el, done) {
       // el: トランシジョンの対象となるDOM要素
-      // 要素の高さを取得し、Amine.jsを用いてメニューを下に展開する
+      // 要素の高さを取得(scrollHeight)し、Amine.jsを用いてメニューを下に展開する
       // 3秒かけて、透明度と高さを変更して出現させる
       anime({
         targets: el,
