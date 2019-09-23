@@ -19,9 +19,45 @@
      }
    ]
 
-// ルートオプションを渡してルーターインスタンスを生成
+var Userlist = {
+  // ビューのscriptタグのidを指定する
+  template: '#user-list',
+  data: function () {
+    return {
+      loading: false,
+      users: function () { return []}, //初期値の空配列
+      error: null
+    }
+  },
+
+  // 初期化時にデータを取得する
+  created: function () {
+    this.fetchData()
+  },
+
+  // $routeの変更をwatchすることでルーティングが変更された時に再度データを取得
+  watch: {
+    '$route': 'fetchData'
+  },
+
+  methods: {
+    fetchData: function () {
+      this.loading = true
+      // 取得したデータの結果をusersに格納する
+      // Function.prototype.bindはthisのスコープを渡すために利用
+      getUsers((function (err, users) {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.users = users
+        }
+      }).bind(this))
+    }
+  }
+}
+
 var router = new VueRouter({
-  // コンポーネントをマッピングしたルート定義を配列で渡す
   routes: [
     {
       path: '/top',
@@ -31,14 +67,26 @@ var router = new VueRouter({
     },
     {
       path: '/users',
-      component: {
-        template: '<div>ユーザー一覧ページです。</div>'
-      }
+      component: Userlist
     }
   ]
 })
 
-// ルーターのインスタンスをrootとなるVueインスタンスに渡す
+var getUsers = function (callback) {
+  setTimeout(function () {
+    callback(null, [
+      {
+        id: 1,
+        name: 'Takuya Tejima',
+      },
+      {
+        id: 2,
+        name: 'Yohei Noda'
+      }
+    ])
+  }, 1000)
+}
+
 var app = new Vue({
   router: router
 }).$mount('#app')

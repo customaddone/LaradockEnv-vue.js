@@ -12,11 +12,26 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <!-- ボタンを押すと遷移する -->
-        <router-link to="/top">トップページ</router-link>
-        <router-link to="/users">ユーザー一覧ページ</router-link>
+        <nav>
+            <!-- router-linkによるナビゲーション定義 -->
+            <router-link to="/top">トップページ</router-link>
+            <router-link to="/users">ユーザー一覧ページ</router-link>
+        </nav>
         <router-view></router-view>
     </div>
+    <script type="text/x-template" id="user-list">
+        <div>
+            <div class="loading" v-if="loading">読み込み中...</div>
+            <div v-if="error" class="error">
+                @{{ error }}
+            </div>
+            <!-- userがロードされたらユーザーの名前を表示する -->
+            <div v-for="user in users" :key="user.id">
+                <h2>@{{ user.name }}</h2>
+            </div>
+        </div>
+    </script>
+
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
     <div class="container">
