@@ -1,28 +1,40 @@
-.v-enter-active,
-.v-leave-active {
-  /* アニメーションの時間、イージングなどを設定 */
-  transition: opacity 500ms ease-out;
+div, ul, li, a, p {
+  margin: 0;
+  padding: 0;
 }
 
-/* フェードイン */
-.v-enter {
-  /* フェードインの初期状態
-      opacityは透明度 */
-  opacity: 0;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
 }
 
-.v-enter-to {
-  /* フェードインの終了状態 */
-  opacity: 1;
+div {
+  width: 90px;
 }
 
-/* フェードアウト */
-.v-leave {
-  /* フェードアウトの初期状態 */
-  opacity: 1;
+.menu {
+  width: 90px;
+  text-decoration: none;
+  background-color: #9999FF;
+  color: #000;
+  border: solid 1px #6666CC;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
 }
 
-.v-leave-to {
-  /* フェードアウトの終了状態 */
-  opacity: 0;
+.menu-item {
+  width: 90px;
+  text-decoration: none;
+  background-color: #CCCCFF;
+  color: #000;
+  border: solid 1px #6666CC;
+  border-top: none;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
 }

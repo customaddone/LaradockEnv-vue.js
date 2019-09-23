@@ -6,18 +6,16 @@
     <script src="https://unpkg.com/vue@2.5.17"></script>
     <!-- Vue Routerのインストールを行う -->
     <script src="https://unpkg.com/vue-router@3.0.1"></script>
+    <!-- anime.jsを追加 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js">
+    </script>
     <!-- csrf_tokenをつける -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <!-- ボタンを押すとisShowが!false = trueになる -->
-        <button @click="isShown = !isShown">表示の切り替え</button>
-        <transition>
-            <!-- isShownがtrueの時表示 -->
-            <p v-show="isShown">Hello, world!</p>
-        </transition>
+        <pull-down-menu></pull-down-menu>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
