@@ -19,29 +19,27 @@
      }
    ]
 
-Vue.component('user-login', {
-  // ビュー側でのx-templateを持ってくる
-  template: '#login-template',
-  data: function () {
-    return {
-      userid: '',
-      password: ''
+// ルートオプションを渡してルーターインスタンスを生成
+var router = new VueRouter({
+  // コンポーネントをマッピングしたルート定義を配列で渡す
+  routes: [
+    {
+      // ビューのrouter-linkから呼び出される
+      path: '/top',
+      component: {
+        template: '<div>トップページです。</div>'
+      }
+    },
+    {
+      path: '/users',
+      component: {
+        template: '<div>ユーザー一覧ページです。</div>'
+      }
     }
-  },
-  methods: {
-    login: function () {
-      auth.login(this.userid, this.password)
-    }
-  }
+  ]
 })
 
-var auth = {
-  login: function(id, pass){
-    // 入力した値 + αがalertされる
-    window.alert("userid:" + id + "\n" + "password:" + pass);
-  }
-}
-
-new Vue({
-  el: "#login-example"
-})
+// ルーターのインスタンスをrootとなるVueインスタンスに渡す
+var app = new Vue({
+  router: router
+}).$mount('#app')
