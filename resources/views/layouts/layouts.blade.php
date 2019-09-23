@@ -10,15 +10,18 @@
 <!-- テンプレート用 -->
 <body>
     <div id="fruits-list">
-        <page-header>
-            <!-- slotのname属性を指定することで、子コンポーネントのコンテンツをカスタマイズ
-        　　　　　します -->
-            <h1 slot="header">夏の果物</h1>
+        <page-header class="header">
+            <!-- slot=名前指定 で子コンポーネントのslotに任意のコンテンツを埋め込む-->
+            <h1 slot="header">
+                冬の果物
+            </h1>
         </page-header>
-        <ul>
-            <li>スイカ</li>
-            <li>マンゴー</li>
-        <ul>
+        <page-content class="content">
+            <ul slot="content">
+                <li>りんご</li>
+                <li>イチゴ</li>
+            </ul>
+        </page-content>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
