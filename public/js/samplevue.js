@@ -19,27 +19,28 @@
      }
    ]
 
-// slotは親の指定で差し替えられます slotのname属性を指定しておく
-var headerTemplate = `
-  <div style="color: gray;">
-    <slot name="header">No title</slot>
-  </div>
-  `
-
-var contentTemplate = `
-  <div>
-    <slot name="content">No contents</slot>
-  </div>
-`
-
-Vue.component('page-header', {
-  template: headerTemplate
+Vue.component('user-login', {
+  // ビュー側でのx-templateを持ってくる
+  template: '#login-template',
+  data: function () {
+    return {
+      userid: '',
+      password: ''
+    }
+  },
+  methods: {
+    login: function () {
+      auth.login(this.userid, this.password)
+    }
+  }
 })
 
-Vue.component('page-content', {
-  template: contentTemplate
-})
+var auth = {
+  login: function(id, pass){
+    window.alert("userid:" + id + "\n" + "password:" + pass);
+  }
+}
 
 new Vue({
-  el: "#fruits-list"
+  el: "#login-example"
 })

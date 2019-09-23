@@ -9,20 +9,23 @@
 </head>
 <!-- テンプレート用 -->
 <body>
-    <div id="fruits-list">
-        <page-header class="header">
-            <!-- slot=名前指定 で子コンポーネントのslotに任意のコンテンツを埋め込む-->
-            <h1 slot="header">
-                冬の果物
-            </h1>
-        </page-header>
-        <page-content class="content">
-            <ul slot="content">
-                <li>りんご</li>
-                <li>イチゴ</li>
-            </ul>
-        </page-content>
+    <div id="login-example">
+        <user-login></user-login>
     </div>
+    <script type="text/x-template" id="login-template">
+        <div id="login-template">
+            <div>
+                <!-- placeholderは初期値設定のため
+                     v-modelでイベント発生ごとにuserid,passwordの値をいじる -->
+                <input type="text" placeholder="ログインID" v-model="userid">
+            </div>
+            <div>
+                <input type="password" placeholder="パスワード" v-model="password">
+            </div>
+            <!-- ボタンを押すとloginを実行 -->
+            <button @click="login">ログイン</button>
+        </div>
+    </script>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
     <div class="container">
