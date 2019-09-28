@@ -2,6 +2,8 @@
 <head>
     <title>RailsTutorial</title>
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <!-- SNSのロゴを読み込む -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
     <!-- Vueのインストールを行う -->
     <script src="https://unpkg.com/vue@2.5.17"></script>
     <!-- Vue Routerのインストールを行う -->
@@ -15,10 +17,8 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <!-- tagプロパティで実際にどのボタンをどの要素にするのかを決定する -->
-        <my-button href="https://vuejs.org/">anchor</my-button>
-        <my-button tag="span">span</my-button>
-        <my-button>button</my-button>
+        <icon-share-button></icon-share-button>
+        <text-share-button></text-share-button>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 

@@ -1,28 +1,62 @@
-var MyButton = {
-  props: ['href', 'tag'],
-  /*
-    描画関数renderは、引数にcreateElement関数を受け取る
-    この関数を用いて仮想のDOM要素を生成する
-   */
-  render: function (createElement) {
-    // tag = tagがあればtag、なければa、それもなければbutton
-    var tag = this.tag || (this.href ? 'a' : 'button')
-    /*
-      createElementの泰一引数には要素名、コンポーネントオプション、もしくはそれらを非同期
-      に解決する関数を指定します
-    */
-    return createElement(tag, {
-      // 指定した要素について、href属性を付与
-      attrs: {
-        href: this.href || '#'
+var IconShareButton = {
+  template: `
+    <button @click="share"><i class="fas fa-share-square"></i></button>
+  `,
+  data: function () {
+    return {
+      _isProcessing: false
+    }
+  },
+  methods: {
+    share: function () {
+      if (this._isProcessing) {
+        return
       }
-    }, this.$slots.default)
+      if (!window.confirm('シェアしますか？')) {
+        return
+      }
+      this._isProcessing = true
+      // 実際はここでSNSのAPIを呼び出す
+      setTimeout(() => {
+        window.alert('シェアしました')
+        this._isProcessing = false
+      }, 300)
+    }
+  }
+}
+
+var TextShareButton = {
+  template: `
+    <button @click="share">{{ buttonLabel }}</button>
+  `,
+  data: function () {
+    return {
+      buttonLabel: 'シェアする',
+      _isProcessing: false
+    }
+  },
+  methods: {
+    share: function () {
+      if (this._isProcessing) {
+        return
+      }
+      if (!window.confirm('シェアしますか？')) {
+        return
+      }
+      this._isProcessing = true
+      // 実際はここでSNSのAPIを呼び出す
+      setTimeout(() => {
+        window.alert('シェアしました')
+        this._isProcessing = false
+      }, 300)
+    }
   }
 }
 
 new Vue({
   el: '#app',
   components: {
-    MyButton: MyButton
+    IconShareButton,
+    TextShareButton
   }
 })
