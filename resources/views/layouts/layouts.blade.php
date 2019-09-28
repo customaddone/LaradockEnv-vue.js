@@ -16,7 +16,7 @@
 <body>
     <div id="app">
         <!-- 定義したカスタムディレクティブを利用する -->
-        <img v-fallback-image src="./logo.png">
+        <img v-fallback-image src="./logo.png" :alt="altText" >
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
