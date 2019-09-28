@@ -1,15 +1,16 @@
-<!-- 単一コンポーネントはjs/Componentに収納する -->
 <template>
-    <p>
-        {{message}}
-    </p>
+  <p class="message">メッセージ： {{ msg }}</p>
 </template>
+
 <script>
-    export default {
-        data: () => {
-            return {
-                message: '今日も最高！！'
-            }
-        }
-    }
-</script>
+/*
+  各ブロックでsrc属性で外部ファイルの内容をインポートできる
+  src属性による外部ファイルのインポートは、既存のアプリケーション資産を流用できるので大変便利
+  です
+*/
+
+export default {
+  data () {
+    return { msg: 'こんにちは！' }
+  }
+}
