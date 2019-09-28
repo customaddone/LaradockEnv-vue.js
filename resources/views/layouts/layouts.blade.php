@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>RailsTutorial</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <!-- Vueのインストールを行う -->
     <script src="https://unpkg.com/vue@2.5.17"></script>
     <!-- Vue Routerのインストールを行う -->
@@ -15,7 +15,12 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <pull-down-menu></pull-down-menu>
+        <my-page>
+            <!-- name属性値がheaderの<slot>と置き換わるコンテンツ -->
+            <h1 slot="header">This is my page</h1>
+            <!-- name属性値がfooterの<slot>と置き換わるコンテンツ -->        
+            <p slot="footer">This is footer</p>
+        </my-page>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
