@@ -1,23 +1,38 @@
-var MyButton = {
-  data: function () {
-    return {
-      textLabel: 'child'
+var TodoList = {
+  /* 値を親コンポーネントから持ってくる */
+  props: {
+    todos: {
+      type: Array,
+      required: true
     }
   },
   template: `
-    <button>
-      <slot>OK</slot>
-    </button>
+    <ul>
+      <template v-for="todo in todos">
+        <!-- v-bindディレクティブでtodoを親コンポーネントに渡す -->
+        <slot :todo="todo">
+          <li :key="todo.id">
+            {{ todo.text }}
+          </li>
+        </slot>
+      </template>
+    </ul>
   `
 }
+
 new Vue({
   el: '#app',
   data: function () {
     return {
-      textLabel: 'parent'
+      todos: [
+        { id: 1, text: 'C++', isCompleted: true },
+        { id: 2, text: 'JavaScript', isCompleted: false },
+        { id: 3, text: 'Java', isCompleted: true },
+        { id: 4, text: 'JavaScript', isCompleted: false },
+      ]
     }
   },
   components: {
-    MyButton: MyButton
+    TodoList: TodoList
   }
 })

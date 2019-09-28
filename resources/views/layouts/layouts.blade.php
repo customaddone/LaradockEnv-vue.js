@@ -15,8 +15,11 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <!-- 「parent」と「child」どちらが参照されるでしょうか -->
-        <my-button>@{{ textLabel }}</my-button>
+        <todo-list :todos="todos">
+            <li slot-scope="{ todo }" v-if="todo.isCompleted" :key="todo.id">
+                @{{ todo.text }}
+            </li>
+        </todo-list>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
