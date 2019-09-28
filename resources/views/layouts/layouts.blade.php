@@ -15,8 +15,10 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <!-- 定義したカスタムディレクティブを利用する -->
-        <img v-fallback-image src="./logo.png" :alt="altText" >
+        <!-- tagプロパティで実際にどのボタンをどの要素にするのかを決定する -->
+        <my-button href="https://vuejs.org/">anchor</my-button>
+        <my-button tag="span">span</my-button>
+        <my-button>button</my-button>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
