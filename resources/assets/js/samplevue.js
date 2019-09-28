@@ -1,58 +1,33 @@
-var Sharable = {
+Vue.mixin({
+  // 全コンポーネントに強制的にミックスインされる
   data: function () {
     return {
-      _isProcessing: false
+      loggedInUser: null
     }
   },
-  methods: {
-    share: function () {
-      // _isProcessingがtrueであれば何も返さない
-      if (this._isProcessing) {
-        return
-      }
-      // window.confirmが拒否られても何も返さない
-      if (!window.confirm('シェアしますか？')) {
-        return
-      }
-      // ボタン連打を防ぐためにtrueに　カウント300以内だとボタンを押されても何もしない
-      this._isProcessing = true
-      // 実際はここでSNSのAPIを呼び出す
-      setTimeout(() => {
-        window.alert('シェアしました')
-        this._isProcessing = false
-      }, 300)
+  created: function () {
+    var auth = this.$options.auth
+    this.loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'))
+    if (auth && !this.loggedInUser) {
+      window.alert('このページはログインが必要です')
     }
   }
-}
+})
 
-var IconShareButton = {
-  mixins: [Sharable],
+var LoginRequiredPage = {
+  auth: true,
   template: `
-    <!-- シェアアイコンを読み込み -->
-    <button @click="share"><i class="fas fa-share-square"></i></button>
-  `,
-}
-
-var TextShareButton = {
-  /*
-    mixin配列にお好みのミックスインを追加する
-    TextShareButtonには_isProcessingとbuttonLabelの両方の状態がある
-  */
-  mixins: [Sharable],
-  template: `
-    <button @click="share">{{ buttonLabel }}</button>
-  `,
-  data: function () {
-    return {
-      buttonLabel: 'シェアする'
-    }
-  }
+    <div>
+      <p v-if="!loggedInUser">
+        このページはログインが必要です
+      </p>
+    </div>
+  `
 }
 
 new Vue({
   el: '#app',
   components: {
-    IconShareButton,
-    TextShareButton
+    LoginRequiredPage
   }
 })
