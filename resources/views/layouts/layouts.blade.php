@@ -15,11 +15,8 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <todo-list :todos="todos">
-            <li slot-scope="{ todo }" v-if="todo.isCompleted" :key="todo.id">
-                @{{ todo.text }}
-            </li>
-        </todo-list>
+        <!-- 定義したカスタムディレクティブを利用する -->
+        <img v-fallback-image src="./logo.png">
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
