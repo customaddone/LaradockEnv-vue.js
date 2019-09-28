@@ -1,4 +1,5 @@
 Vue.mixin({
+  // 全コンポーネントに強制的にミックスインされる
   data: function () {
     return {
       loggedInUser: null

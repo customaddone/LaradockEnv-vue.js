@@ -1106,7 +1106,10 @@ Vue.component('example-component', __webpack_require__(40));
     git addをするとwarning: CRLF will be replaced by LF inのエラーが出て、gitが改行
     コードをCRLFに変更しようとする
     →　$git config --global core.autoCRLF false
-    を実行すると、gitが改行コードをCRLFへ変更しなくなる */
+    を実行すると、gitが改行コードをCRLFへ変更しなくなる
+
+    単一コンポーネントを使いたい時は下記のように書いていく
+  */
 Vue.component('sample-component', __webpack_require__(43));
 // id="app"の要素にVueが反映される
 var app = new Vue({
@@ -44800,15 +44803,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+    data: function data() {
+        return {
+            message: '今日も最高！！'
+        };
     }
 });
 
@@ -44820,22 +44820,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("p", [_vm._v("\n    " + _vm._s(_vm.message) + "\n")])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _vm._v("\n            Hello World!\n        ")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

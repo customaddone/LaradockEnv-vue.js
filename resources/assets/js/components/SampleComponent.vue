@@ -1,18 +1,15 @@
-<!-- templateでビューの<sample-component></sample-component>の中身を作る -->
+<!-- 単一コンポーネントはjs/Componentに収納する -->
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                Hello World!
-            </div>
-        </div>
-    </div>
+    <p>
+        {{message}}
+    </p>
 </template>
-
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data: () => {
+            return {
+                message: '今日も最高！！'
+            }
         }
     }
 </script>

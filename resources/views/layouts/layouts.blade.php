@@ -17,9 +17,11 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <login-required-page></login-required-page>
+        <sample-component></sample-component>
     </div>
-    <script src="{{ asset('/js/samplevue.js') }}"></script>
+    <!-- <script src="{{ asset('/js/samplevue.js') }}"></script> -->
+    <!-- <script src="{{ asset('/js/app.js') }}"></script> を足す -->
+    <script src="{{ asset('/js/app.js') }}"></script>
 
     <div class="container">
         <header>
