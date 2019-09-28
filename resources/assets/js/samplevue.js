@@ -1,8 +1,4 @@
-var IconShareButton = {
-  template: `
-    <!-- シェアアイコンを読み込み -->
-    <button @click="share"><i class="fas fa-share-square"></i></button>
-  `,
+var Sharable = {
   data: function () {
     return {
       _isProcessing: false
@@ -29,30 +25,26 @@ var IconShareButton = {
   }
 }
 
+var IconShareButton = {
+  mixins: [Sharable],
+  template: `
+    <!-- シェアアイコンを読み込み -->
+    <button @click="share"><i class="fas fa-share-square"></i></button>
+  `,
+}
+
 var TextShareButton = {
+  /*
+    mixin配列にお好みのミックスインを追加する
+    TextShareButtonには_isProcessingとbuttonLabelの両方の状態がある
+  */
+  mixins: [Sharable],
   template: `
     <button @click="share">{{ buttonLabel }}</button>
   `,
   data: function () {
     return {
-      buttonLabel: 'シェアする',
-      _isProcessing: false
-    }
-  },
-  methods: {
-    share: function () {
-      if (this._isProcessing) {
-        return
-      }
-      if (!window.confirm('シェアしますか？')) {
-        return
-      }
-      this._isProcessing = true
-      // 実際はここでSNSのAPIを呼び出す
-      setTimeout(() => {
-        window.alert('シェアしました')
-        this._isProcessing = false
-      }, 300)
+      buttonLabel: 'シェアする'
     }
   }
 }
