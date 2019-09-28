@@ -1,26 +1,19 @@
 <template>
-  <p class="message">メッセージ： {{ msg }}</p>
+  <p :class="$style.message">こんにちは</p>
 </template>
 
 <script>
-/*
-  各ブロックでsrc属性で外部ファイルの内容をインポートできる
-  src属性による外部ファイルのインポートは、既存のアプリケーション資産を流用できるので大変便利
-  です
-*/
-
 export default {
-  data () {
-    return { msg: 'こんにちは！' }
+  created () {
+  console.log('css modules: $style', this.$style)
   }
 }
 </script>
+
 /*
-  cssは実用レベルの名前空間がないため、BEMなどCSS側の記法を工夫することで干渉を防ぐ必要があるなど
-  かなり手間のかかる言語です。スコープ付きCSSを利用することで擬似的な名前空間を設けて、この干渉の
-  危険を防ぎます。
-  直感的なスタイル定義が可能になり、よりCSSをメンテナンスしやすくなるため、大変便利です
+  モジュールでCSSの名前空間衝突を回避できる
+  CSSモジュールでは、class属性の指定に、Vue.jsのv-bindで指定します
 */
-<style scoped>
+<style module>
   .message { color: #42b983; }
 </style>
