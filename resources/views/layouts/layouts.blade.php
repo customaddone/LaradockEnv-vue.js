@@ -15,12 +15,8 @@
 <!-- テンプレート用 -->
 <body>
     <div id="app">
-        <my-page>
-            <!-- name属性値がheaderの<slot>と置き換わるコンテンツ -->
-            <h1 slot="header">This is my page</h1>
-            <!-- name属性値がfooterの<slot>と置き換わるコンテンツ -->        
-            <p slot="footer">This is footer</p>
-        </my-page>
+        <!-- 「parent」と「child」どちらが参照されるでしょうか -->
+        <my-button>@{{ textLabel }}</my-button>
     </div>
     <script src="{{ asset('/js/samplevue.js') }}"></script>
 
